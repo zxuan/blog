@@ -1,1 +1,23 @@
-baseurl: /blog
+markdown: rdiscount
+pygments: true
+permalink: /:year/:month/:day/:title.html
+name: "test"
+markdown: rdiscount
+
+author: "zxuan"
+atom-baseurl: "http://zxuan.github.io/blog"
+disqus: "gopherwood"
+
+navigations:
+  - title: Archive
+    class: fa fa-list-ul
+    href: /archive.html
+  - title: Tags
+    class: fa fa-tags
+    href: /tags.html
+  - title: About
+    class: fa fa-user
+    href: /about.html
+  - title: Blogroll
+    class: fa fa-link
+    href: /links.html
