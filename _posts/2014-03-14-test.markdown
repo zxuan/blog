@@ -7,6 +7,6 @@ tags:
     - test1
 ---
 
-![test](/file/media/2014/03/14/first.jpg)
+![test]({{ site.baseurl }}/file/media/2014/03/14/first.jpg)
 
 test
