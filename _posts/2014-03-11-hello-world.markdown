@@ -2,7 +2,7 @@
 layout: post
 title: Hello World
 tags:
-	- test1
+    - test1
 ---
 
 <h2>{{ page.title }}</h2>
