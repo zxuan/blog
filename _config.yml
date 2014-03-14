@@ -1,12 +1,10 @@
+baseurl: /blog
 markdown: rdiscount
 pygments: true
 permalink: /:year/:month/:day/:title.html
 name: "test"
-markdown: rdiscount
-baseurl: /blog
 
 author: "zxuan"
-atom-baseurl: "http://zxuan.github.io/blog"
 disqus: "gopherwood"
 
 navigations:
