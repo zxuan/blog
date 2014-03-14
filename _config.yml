@@ -1,8 +1,9 @@
 markdown: rdiscount
 pygments: true
-permalink: /blog/:year/:month/:day/:title.html
+permalink: /:year/:month/:day/:title.html
 name: "test"
 markdown: rdiscount
+baseurl: /blog
 
 author: "zxuan"
 atom-baseurl: "http://zxuan.github.io/blog"
