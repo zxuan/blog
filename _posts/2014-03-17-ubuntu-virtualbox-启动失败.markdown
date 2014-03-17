@@ -1,6 +1,7 @@
 ---
 title: 'virtualbox打开虚拟机失败' 
 layout: post
+guid: urn:uuid:9f835029-c2ab-42b9-96c1-d0d5669e3616
 tags:
     - ubuntu
     - virtualbox
