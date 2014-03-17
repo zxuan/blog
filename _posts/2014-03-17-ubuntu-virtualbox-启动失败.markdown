@@ -24,7 +24,7 @@ tags:
 出现Kernel driver not installed (rc=-1908)错误的原因是，没有成功编译供virtualbox使用的内核模块。</p>
 
 <p>此时需执行下列安装语句</p>
-<p><code>sudo apt-get install build-essential
+<p><code>sudo apt-get install build-essential<br/>
 sudo apt-get install linux-headers-&apos;uname -r&apos;</code></p>
 
 <p>然后在执行</p>
