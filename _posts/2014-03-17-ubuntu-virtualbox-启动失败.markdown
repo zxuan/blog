@@ -1,6 +1,6 @@
 ---
-title:virtualbox打开虚拟机失败 
-layout:post
+title: 'virtualbox打开虚拟机失败' 
+layout: post
 tags:
     - ubuntu
     - virtualbox
