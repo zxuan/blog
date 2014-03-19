@@ -5,4 +5,4 @@ layout: page
 
 我把自己弄丢了。
 
-[look around](/index.html)
+[look around]({{ site.baseurl }}/index.html)
