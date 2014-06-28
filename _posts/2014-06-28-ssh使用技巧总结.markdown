@@ -9,7 +9,7 @@ tags:
 <p>
         如果你需要在多个窗口中打开到同一个服务器的连接,而不想每次都输入用户名,密码,或是等待连接建立,那么你可以配置SSH的连接共享选项,在本地打开你的SSH配置文件,通常它们位于~/.ssh/config,然后添加下面2行:<br/>
 　      <code>
-        　      ControlMaster auto<br/>
+        　      ControlMaster auto <br/>
 　              ControlPath ~/.ssh/session-clone/ssh-%r@%h:%p
         </code>
         <br/>
@@ -32,6 +32,6 @@ tags:
         </code>
         <br/>
 　　    跟随指示,完成之后,你应该可以在你的.ssh目录下看到两个文件,id_rsa就是你的私钥,而id_ras.pub则是你的公钥,现在你需要将你的公钥拷贝到服务器上<br/>
-　　    将你的公钥拷贝的服务器上的~/.ssh/authorized_keys文件中:<br/>
+　　    将你的公钥拷贝的服务器上的~/.ssh/authorized_keys文件中<br/>
 </p>
 
