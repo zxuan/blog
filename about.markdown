@@ -2,7 +2,6 @@
 title: about
 layout: page
 ---
+zxuan
 
-a
-
-> a
+> mail:zxuancc@gmail.com
