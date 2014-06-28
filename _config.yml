@@ -2,7 +2,7 @@ baseurl: /blog
 markdown: rdiscount
 pygments: true
 permalink: /:year/:month/:day/:title.html
-name: "zhx"
+name: "成长点滴"
 
 author: "zxuan"
 disqus: "gopherwood"
