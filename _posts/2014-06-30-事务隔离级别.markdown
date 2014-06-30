@@ -1,0 +1,101 @@
+---
+title: '事务隔离级别'
+layout: post
+guid: urn:uuid:e1556f00-1d50-49aa-8f2d-a5e136c82d5c
+tags: 
+  - 数据库
+  - 事务
+---
+
+<div id="sina_keyword_ad_area2" class="articalContent   ">
+    <table BORDER="0" STYLE="table-layout: fixed;">
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            事务准备接受不一致数据的级别称为隔离级别。隔离级别是一个事务必须与其它事务进行隔离的程度。较低的隔离级别可以增加并发，但代价是降低数据的正确性。相反，较高的隔离级别可以确保数据的正确性，但可能对并发产生负面影响。应用程序要求的隔离级别确定了所使用的锁定行为：
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            <br />
+                            数据库在被广大客户所共享访问的操作过程中很可能出现以下几种不确定情况 ：
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            1. 更新丢失（Lost update）：两个事务都同时更新一行数据但是第二个事务却中途失败退出导致对数据两个修改都失效了这是系统没有执行任何锁操作因此并发事务并没有被隔离开来
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            2. 脏读取（Dirty Reads）：一个事务开始读取了某行数据但是另外一个事务已经更新了此数据但没有能够及时提交。这是相当危险很可能所有操作都被回滚
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            3. 不可重复读取（Non-repeatable Reads）：一个事务对同一行数据重复读取两次但是却得到了不同结果。例如在两次读取中途有另外一个事务对该行数据进行了修改并提交
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            4. 两次更新问题（Second lost updates problem）：无法重复读取特例，有两个并发事务同时读取同一行数据然后其中一个对它进行修改提交而另一个也进行了修改提交这就会造成第一次写操作失效
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            5. 虚读（Phantom Reads）：也称为幻像（幻影）。事务在操作过程中进行两次查询，第二次查询结果包含了第一次查询中未出现的数据（这里并不要求两次查询SQL语句相同）这是因为在两次查询过程中有另外一个事务插入数据造成的
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            为了避免上面出现几种情况在标准SQL规范中定义了4个事务隔离级别，不同隔离级别对事务处理不同 。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            1.未授权读取（Read Uncommitted）：也称未提交读。允许脏读取但不允许更新丢失，如果一个事务已经开始写数据则另外一个数据则不允许同时进行写操作但允许其他事务读此行数据。该隔离级别可以通过“排他写锁”实现
+                            。事务隔离的最低级别，仅可保证不读取物理损坏的数据。与READ COMMITTED 隔离级相反，它允许读取已经被其它用户修改但尚未提交确定的数据。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            2. 授权读取（Read Committed）：也称提交读。允许不可重复读取但不允许脏读取。这可以通过“瞬间共享读锁”和“排他写锁”实现，读取数据的事务允许其他事务继续访问该行数据，但是未提交写事务将会禁止其他事务访问该行
+                            。SQL Server 默认的级别。在此隔离级下，SELECT 命令不会返回尚未提交（Committed） 的数据，也不能返回脏数据。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            3. 可重复读取（Repeatable Read）：禁止不可重复读取和脏读取。但是有时可能出现幻影数据，这可以通过“共享读锁”和“排他写锁”实现，读取数据事务将会禁止写事务（但允许读事务），写事务则禁止任何其他事务
+                            。在此隔离级下，用SELECT 命令读取的数据在整个命令执行过程中不会被更改。此选项会影响系统的效能，非必要情况最好不用此隔离级。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            4. 序列化（Serializable）：也称可串行读。提供严格的事务隔离，它要求事务序列化执行，事务只能一个接着一个地执行，但不能并发执行。如果仅仅通过“行级锁”是无法实现事务序列化的，必须通过其他机制保证新插入的数据不会被刚执行查询操作事务访问到
+                            。事务隔离的最高级别，事务之间完全隔离。如果事务在可串行读隔离级别上运行，则可以保证任何并发重叠事务均是串行的。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            隔离级需要使用SET 命令来设定其语法如下：&nbsp;
+                            <wbr>
+                            <br />
+                            SET TRANSACTION ISOLATION LEVEL&nbsp;
+                            <wbr>
+                            <br />
+                            {READ COMMITTED&nbsp;
+                            <wbr>
+                            <br />
+                            | READ UNCOMMITTED&nbsp;
+                            <wbr>
+                            <br />
+                            | REPEATABLE READ&nbsp;
+                            <wbr>
+                            <br />
+                            | SERIALIZABLE }&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            <br />
+                            下面是四种隔离级别允许不同类型的行为。
+                            <br />
+                            <br />
+                            隔离级别 脏读 不可重复读取 幻像（幻影）
+                            <br />
+                            未提交读 是 是 是
+                            <br />
+                            提交读 否 是 是
+                            <br />
+                            可重复读 否 否 是
+                            <br />
+                            可串行读 否 否 否
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            隔离级别越高越能保证数据完整性和一致性，但是对并发性能影响也越大。对于多数应用程序，可以优先考虑把数据库系统隔离级别设为Read Committed
+                            ，它能够避免脏读取而且具有较好并发性能。尽管它会导致不可重复读、虚读和第二类丢失更新这些并发问题，在可能出现这类问题的个别场合，可以由应用程序采用悲观锁或乐观锁来控制
+                            。
+                        </P>
+                    </DIV>
+                </TD>
+            </TR>
+        </TBODY>
+    </TABLE>
+</div>
