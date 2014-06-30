@@ -1,0 +1,161 @@
+---
+title: '锁'
+layout: post
+guid: urn:uuid:7cc89892-e642-4b2f-8485-966b99bd2a3a
+tags: 
+  - 数据库
+  - 锁
+---
+
+<div id="sina_keyword_ad_area2" class="articalContent   ">
+    <table BORDER="0" STYLE="table-layout: fixed;">
+        <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            锁（Lock） 是在多用户环境下对资源访问的一种限制。机制当对一个数据源加锁后，此数据源就有了一定的访问限制。我们就称对此数据源进行了“锁定”。在SQL
+                            Server中，可以对以下的对象进行锁定：&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            数据行（Row）：数据页中的单行数据；&nbsp;
+                            <wbr>
+                            <br />
+                            索引行（Key）：索引页中的单行数据，即索引的键值；&nbsp;
+                            <wbr>
+                            <br />
+                            页（Page）：页是SQL Server 存取数据的基本单位，其大小为8KB；&nbsp;
+                            <wbr>
+                            <br />
+                            盘区（Extent）：一个盘区由8 个连续的页组成；&nbsp;
+                            <wbr>
+                            <br />
+                            表（Table）；&nbsp;
+                            <wbr>
+                            <br />
+                            数据库（Database）。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            <br />
+                            在SQL Server 中，锁有两种分类方法。&nbsp;
+                            <wbr>
+                            <br />
+                            （1） 从数据库系统的角度来看&nbsp;
+                            <wbr>
+                            <br />
+                            锁分为以下三种类型：&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            1.独占锁（Exclusive Lock）&nbsp;
+                            <wbr>
+                            <br />
+                            独占锁锁定的资源只允许进行锁定操作的程序使用，其它任何对它的操作均不会被接受。执行数据更新命令，即INSERT、 UPDATE 或DELETE
+                            命令时，SQL Server 会自动使用独占锁。但当对象上有其它锁存在时，无法对其加独占锁。独占锁一直到事务结束才能被释放。&nbsp;
+                            <wbr>
+                            <br />
+                            2.共享锁（Shared Lock）&nbsp;
+                            <wbr>
+                            <br />
+                            共享锁锁定的资源可以被其它用户读取，但其它用户不能修改它。在SELECT 命令执行时，SQL Server 通常会对对象进行共享锁锁定。通常加共享锁的数据页被读取完毕后，共享锁就会立即被释放。&nbsp;
+                            <wbr>
+                            <br />
+                            3.更新锁（Update Lock）&nbsp;
+                            <wbr>
+                            <br />
+                            更新锁是为了防止死锁而设立的。当SQL Server 准备更新数据时，它首先对数据对象作更新锁锁定，这样数据将不能被修改，但可以读取。等到SQL
+                            Server 确定要进行更新数据操作时，它会自动将更新锁换为独占锁。但当对象上有其它锁存在时，无法对其作更新锁锁定。&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            2）从程序员的角度看&nbsp;
+                            <wbr>
+                            <br />
+                            锁分为以下两种类型：&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            1.乐观锁（Optimistic Lock）&nbsp;
+                            <wbr>
+                            <br />
+                            乐观锁假定在处理数据时，不需要在应用程序的代码中做任何事情就可以直接在记录上加锁、即完全依靠数据库来管理锁的工作。一般情况下，当执行事务处理时SQL
+                            Server会自动对事务处理范围内更新到的表做锁定。&nbsp;
+                            <wbr>
+                            <br />
+                            2.悲观锁（Pessimistic Lock）&nbsp;
+                            <wbr>
+                            <br />
+                            悲观锁对数据库系统的自动管理不感冒，需要程序员直接管理数据或对象上的加锁处理，并负责获取、共享和放弃正在使用的数据上的任何锁。
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            锁定优化程序提示及其描述&nbsp;
+                            <wbr>
+                            <br />
+                            优化程序提示 优化程序提示描述&nbsp;
+                            <wbr>
+                            <br />
+                            holdlock 保持锁定直到事务结束&nbsp;
+                            <wbr>
+                            <br />
+                            nolock 检索数据时不使用锁&nbsp;
+                            <wbr>
+                            <br />
+                            paglock 使用页面锁&nbsp;
+                            <wbr>
+                            <br />
+                            tablock 使用表锁&nbsp;
+                            <wbr>
+                            <br />
+                            tablockx 使用独占表锁&nbsp;
+                            <wbr>
+                            <br />
+                            updlock 使用更新锁&nbsp;
+                            <wbr>
+                            &nbsp;
+                            <wbr>
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            如： SELECT *&nbsp;
+                            <wbr>
+                            &nbsp;
+                            <wbr>
+                            &nbsp;
+                            <wbr>
+                            FROM authors (paglock holdlock index=aunmind)&nbsp;
+                            <wbr>
+                            &nbsp;
+                            <wbr>
+                            &nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            死锁及其防止：
+                        </P>
+                        <p STYLE="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px;">
+                            死锁（Deadlocking） 是在多用户或多进程状况下，为使用同一资源而产生的无法解决的争用状态，通俗地讲，就是两个用户各占用一个资源，两人都想使用对方的资源，但同时又不愿放弃自己的资源，就一直等待对方放弃资源，如果不进行外部干涉，就将一直耗下去。&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            死锁会造成资源的大量浪费，甚至会使系统崩溃。在SQL Server 中解决死锁的原则是“牺牲一个比两个都死强”，即挑出一个进程作为牺牲者，将其事务回滚，并向执行此进程的程序发送编号为1205
+                            的错误信息。而防止死锁的途径就是不能让满足死锁条件的情况发生，为此，用户需要遵循以下原则：&nbsp;
+                            <wbr>
+                            <br />
+                            <br />
+                            尽量避免并发地执行涉及到修改数据的语句；&nbsp;
+                            <wbr>
+                            <br />
+                            要求每个事务一次就将所有要使用的数据全部加锁，否则就不予执行；&nbsp;
+                            <wbr>
+                            <br />
+                            预先规定一个封锁顺序所有的事务，都必须按这个顺序对数据执行封锁，例如，不同的过程在事务内部对对象的更新执行顺序应尽量保持一致；&nbsp;
+                            <wbr>
+                            <br />
+                            每个事务的执行时间不可太长，对程序段长的事务可考虑将其分割为几个事务。
+                        </P>
+                    </DIV>
+                </TD>
+            </TR>
+        </TBODY>
+    </TABLE>
+</div>
