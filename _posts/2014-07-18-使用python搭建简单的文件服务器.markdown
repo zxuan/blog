@@ -1,0 +1,26 @@
+---
+title: '使用python搭建简单的文件服务器'
+layout: post
+guid: urn:uuid:40d72c89-2e13-4eab-b383-3679a5cf8348
+tags: 
+  - python
+  - 文件服务器
+---
+
+工作中经常需要相互之间传文件<br/>
+只需要简单几步就可以在本机搭建一个文件服务器<br/>
+进入一个文件夹:<br/>
+<code>
+     	cd ~/share
+</code>
+<br/>
+使用python搭建文件服务器:<br/>
+<code>
+	python -m SimpleHTTPServer 9090
+</code>
+</br>
+至此文件服务就搭建成功立，这样别人就可以在浏览器中直接访问http://你的ip:9090访问你share文件夹下的所有文件。
+
+
+
+
