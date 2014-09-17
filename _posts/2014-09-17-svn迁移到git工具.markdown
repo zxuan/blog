@@ -20,6 +20,7 @@ $ sudo gem install svn2git
 ```
 
 make new git repo (for example project "blog")
+</br>
 ```
 $ cd ... #your git repos root directory
 ```
@@ -33,11 +34,9 @@ $ cd blog
 ```
 
 run svn2git
-```
-$ svn2git svn://地址 --trunk trunk --nobranches --notags -v 
-```
 </br>
 ```
+$ svn2git svn://地址 --trunk trunk --nobranches --notags -v 
 $ touch README
 ```
 </br>
