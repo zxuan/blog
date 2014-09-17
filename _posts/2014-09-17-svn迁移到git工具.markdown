@@ -37,6 +37,9 @@ run svn2git
 </br>
 ```
 $ svn2git svn://地址 --trunk trunk --nobranches --notags -v 
+```
+</br>
+```
 $ touch README
 ```
 </br>
