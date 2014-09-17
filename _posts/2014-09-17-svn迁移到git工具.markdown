@@ -9,21 +9,24 @@ tags:
 
 最近工作需要svn迁移到git所以找了一个小工具
 install svn2git https://github.com/nirvdrum/svn2git#readme
-#$ sudo apt-get install git-core git-svn ruby rubygems
-或
-#$ sudo gem install svn2git
-
+```
+$ sudo apt-get install git-core git-svn ruby rubygems
+$ sudo gem install svn2git
+```
 
 make new git repo (for example project "blog")
-#$ cd ... #your git repos root directory
-#$ mkdir blog
-#$ cd blog
-
+```
+$ cd ... #your git repos root directory
+$ mkdir blog
+$ cd blog
+```
 
 run svn2git
-#$ svn2git svn://地址 --trunk trunk --nobranches --notags -v 
-#$ touch README
-#$ git add README
-#$ git commit -m '从svn向gitlab迁移'
-#$ git remote add origin git@github.com:zxuan/blog.git
-#$ git push -u origin master
+```
+$ svn2git svn://地址 --trunk trunk --nobranches --notags -v 
+$ touch README
+$ git add README
+$ git commit -m '从svn向gitlab迁移'
+$ git remote add origin git@github.com:zxuan/blog.git
+$ git push -u origin master
+```
