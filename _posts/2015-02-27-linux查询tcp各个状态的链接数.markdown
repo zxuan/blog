@@ -7,10 +7,11 @@ tags:
   - tcp
 ---
 
-Linux 判断tcp各个状态的链接数
+Linux 判断tcp各个状态的链接数<br/>
 ```
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ```
+<br/>
 具体每种状态什么意思，其实无需多说，看看下面这种图就明白了，注意这里提到的服务器应该是业务请求接受处理的一方：
 ![tcp链接]({{ site.baseurl }}/file/media/2015/02/27/tcp.gif)
 <p>
